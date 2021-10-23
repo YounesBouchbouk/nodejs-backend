@@ -2,6 +2,7 @@ const express = require('express')
 const morgan = require('morgan')
 const toursRouting = require('./routers/toursRouter')
 const usersRouting = require('./routers/usersRouter')
+const reviewrouting = require('./routers/reviewRouter')
 const appError = require('./utils/appErreur')
 const errorcontoulers = require('./controllers/errorCnt')
 const app = express()
@@ -21,6 +22,8 @@ app.use ((req , res , next ) =>{
 
 app.use('/api/v1/tours' , toursRouting)
 app.use('/api/v1/users' , usersRouting)
+app.use('/api/v1/reviews' , reviewrouting)
+
 
 app.all('*' , (req , res ,next )=>{
 

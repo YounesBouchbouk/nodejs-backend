@@ -38,7 +38,7 @@ exports.selectTour = catchAsync(async (req , res , next ) => {
     console.log(req.params.id);
     console.log("Hola");
   
-        const selctedtoor = await Tour.findById(req.params.id)
+        const selctedtoor = await Tour.findById(req.params.id).populate('Review')
         console.log("i'm here");
         res.status(200).json({
             status : "successe",

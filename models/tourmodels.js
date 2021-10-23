@@ -61,13 +61,20 @@ const tourShema = new mongosse.Schema({
     secrettour : false 
 
 },{
-    toJSON : {virtual : true},
-    toObject : {virtual:true}
+    toJSON : {virtuals : true},
+    toObject : {virtuals:true}
 })
 
 //shema virtual colums we can't do query whit them
-tourShema.virtual('durationWeek').get(function(){
-    return this.duration / 7
+// tourShema.virtual('durationWeek').get(function(){
+//     return this.duration / 7
+// })
+
+
+tourShema.virtual("Review"  , {
+    ref : "Review",
+    foreignField : 'tour',
+    localField : '_id'
 })
 
 //pre middlware this middlware execute before any save and create , .post execute after it can take doc s params 
