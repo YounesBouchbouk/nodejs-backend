@@ -1,38 +1,49 @@
 const { Query } = require('mongoose')
+const AppErreur = require('../utils/appErreur')
 const Tour = require('./../models/tourmodels')
 const ApiFeature = require('./../utils/APIfeatures')
 const catchAsync = require('./../utils/catchAsyncron.js')
-exports.deleteTour = catchAsync(async(req , res ,next ) => {
-    
-        const deleted = await Tour.deleteOne({_id : req.params.id})
-        console.log("I'm here");
-        // if(deleted.deletedCount === 0 ) throw("Not Found")
-        res.status(200).json({
-            status : "Deleted succssefuly" , 
-            data : {
-                deleted
-            }
-        })
-        
-    
-})
+const Factory = require('./FactoryHandler')
 
-exports.updateTour = catchAsync(async (req , res ,next) => {
-   
-        console.log(req.body);
-        const selectedtour = await Tour.findById(req.params.id)
-        console.log(selectedtour);
-        selectedtour.name = req.body.name
-        console.log(selectedtour);
-        
-        await selectedtour.save()
-        res.status(200).json({
-            status : "successe" , 
-            data : selectedtour
-        })
+
+// exports.deleteTour = catchAsync(async(req , res ,next ) => {
+    
+//         const deleted = await Tour.deleteOne({_id : req.params.id})
+//         console.log("I'm here");
+//         // if(deleted.deletedCount === 0 ) throw("Not Found")
+//         res.status(200).json({
+//             status : "Deleted succssefuly" , 
+//             data : {
+//                 deleted
+//             }
+//         })
         
     
-})
+// })
+
+
+// exports.updateTour = catchAsync(async (req , res ,next) => {
+    
+    //         console.log(req.body);
+    //         const selectedtour = await Tour.findOneAndUpdate(req.params.id , req.body  , {
+        //             new: true ,
+        //             runValidators: true
+        //         })
+        
+        //         if(!selectedtour) next(new AppErreur('No Tour With This Id ' , 404))
+        
+        //         res.status(200).json({
+            //             status : "successe" , 
+            //             data : selectedtour
+            //         })
+            
+            
+            // })
+            
+exports.deleteTour= Factory.deleteOne(Tour)
+exports.updateTour = Factory.updateOne(Tour)
+exports.getAllTour = Factory.getAll(Tour)
+
 
 exports.selectTour = catchAsync(async (req , res , next ) => {
     console.log(req.params.id);
@@ -73,22 +84,22 @@ exports.aliastopcheap = (req , res , next) => {
 }
 
 
-exports.getAllTour = catchAsync(async (req , res , next )  => {
+// exports.getAllTour = catchAsync(async (req , res , next )  => {
   
-        const featureApi = new ApiFeature(Tour.find(),req.query).filter().sort().limitefields().paningtation()
-    console.log('Im here');
-        const alltours = await featureApi.query
+//         const featureApi = new ApiFeature(Tour.find(),req.query).filter().sort().limitefields().paningtation()
+//     console.log('Im here');
+//         const alltours = await featureApi.query
         
-        res.status(200).json({
-            status : "successe",
-            lenght : alltours.length,
-            data : 
-            alltours 
+//         res.status(200).json({
+//             status : "successe",
+//             lenght : alltours.length,
+//             data : 
+//             alltours 
             
-        })
+//         })
         
    
-})
+// })
 
 
 //analyse data with aggregate

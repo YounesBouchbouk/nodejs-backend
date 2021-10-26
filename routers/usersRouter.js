@@ -18,7 +18,9 @@ routers.patch(
 
 
 routers.route('/').get(userscontrollers.getAllUsers)
-
+routers.get('/me', authControllers.accesautorisation,userscontrollers.getMe, userscontrollers.getUser);
+routers.patch('/updateMe', authControllers.accesautorisation, userscontrollers.updateMe);
+routers.delete('/deleteMe',authControllers.accesautorisation, userscontrollers.deleteMe);
 
 
 

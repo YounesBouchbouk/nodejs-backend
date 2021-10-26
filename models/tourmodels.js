@@ -53,12 +53,38 @@ const tourShema = new mongosse.Schema({
         type : [Date],
         require : [true , "price have to be"],
     } , 
+    startLocation: {
+        // GeoJSON
+        type: {
+          type: String,
+          default: 'Point',
+          enum: ['Point']
+        },
+        coordinates: [Number],
+        address: String,
+        description: String
+      },
+      locations: [
+        {
+          type: {
+            type: String,
+            default: 'Point',
+            enum: ['Point']
+          },
+          coordinates: [Number],
+          address: String,
+          description: String,
+          day: Number
+        }
+      ],
+
     CreatedAt : {
         type : Date,
         default : Date.now()
 
     },
-    secrettour : false 
+    secrettour : {type: Boolean,
+      default: false }
 
 },{
     toJSON : {virtuals : true},

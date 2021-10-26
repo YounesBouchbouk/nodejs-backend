@@ -5,10 +5,10 @@ const routers = express.Router()
 
 const tourscontrollers = require('./../controllers/toursCnt')
 const autentication = require('./../controllers/authControllers')
-const reviewtours = require('./reviewRouter')
+const reviewRoutes = require('./reviewRouter')
 
 //switch  to reviews controllers 
-routers.use('/:tourid/reviews', reviewtours)
+routers.use('/:tourid/reviews', reviewRoutes)
 
 // routers.param('id' , tourscontrollers.checkId)
 routers.route('/top-5-cheap-tours')

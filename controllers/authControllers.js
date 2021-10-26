@@ -93,7 +93,7 @@ exports.signin = catchAsync(async (req,res,next) => {
 
 exports.accesautorisation= catchAsync(async (req,res,next) => {
     let token ; 
-    console.log(req.headers.authorization);
+    // console.log(req.headers.authorization);
     // 1) check if there is a token in req.headers
     if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')){
         token = req.headers.authorization.split(' ')[1]
@@ -116,7 +116,7 @@ exports.accesautorisation= catchAsync(async (req,res,next) => {
    // if(correntuser.isPasshasChanged(decode.iat)) return next(new AppErreur('User has change the password please re-login' , 401))
 
     req.user = correntuser;
-    console.log(req.user);
+    // console.log(req.user);
     next()
 })
 
